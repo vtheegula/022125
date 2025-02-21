@@ -6,45 +6,52 @@
   <title>Data Table with AI Analysis</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
+      background-color: white;
       margin: 20px;
-      position: relative; /* Allows absolute positioning of the button */
+      position: relative;
+      color: #333;
+    }
+    h1 {
+      color: #202124;
+      margin-bottom: 40px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 20px;
     }
     th, td {
-      padding: 10px;
+      padding: 12px;
       text-align: center;
       border: 1px solid #ddd;
+      font-size: 16px;
     }
     th {
-      background-color: #4CAF50;
+      background-color: #4285F4; /* Google Blue */
       color: white;
     }
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background-color: #F1F3F4; /* Light grey */
+    }
+    tr:hover {
+      background-color: #D2E3FC; /* Google Light Blue */
     }
     button {
       position: absolute;
       top: 20px;
       right: 20px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       font-size: 16px;
-      background-color: #808080; /* Grey button */
-      color: black; /* Black font */
+      background-color: #34A853; /* Google Green */
+      color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
     button:hover {
-      background-color: #666666; /* Darker grey on hover */
-    }
-
-    /* Add space between button and table */
-    h1 {
-      margin-bottom: 40px; /* Space between heading and button */
+      background-color: #2C8B42; /* Darker green */
     }
 
     /* Modal Styles */
@@ -56,7 +63,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.3);
       justify-content: center;
       align-items: center;
     }
@@ -65,26 +72,30 @@
       background-color: white;
       padding: 20px;
       border-radius: 10px;
-      width: 400px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      width: 450px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .chat-box {
       border: 1px solid #ccc;
-      padding: 10px;
+      padding: 12px;
       height: 200px;
       overflow-y: auto;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      background-color: #F8F9FA; /* Very light grey */
     }
 
     .chat-input {
-      width: calc(100% - 22px);
-      padding: 10px;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
     }
 
     .close {
       float: right;
-      font-size: 18px;
+      font-size: 22px;
       cursor: pointer;
     }
   </style>
