@@ -8,6 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      position: relative; /* Allows absolute positioning of the button */
     }
     table {
       width: 100%;
@@ -26,7 +27,9 @@
       background-color: #f2f2f2;
     }
     button {
-      margin-top: 20px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
       padding: 10px 20px;
       font-size: 16px;
       background-color: #007BFF;
@@ -102,64 +105,4 @@
       </tr>
       <tr>
         <td>2</td>
-        <td>Jane Smith</td>
-        <td>25</td>
-        <td>Los Angeles</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Mike Johnson</td>
-        <td>28</td>
-        <td>Chicago</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Emily Davis</td>
-        <td>35</td>
-        <td>Houston</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <button onclick="openModal()">Analyze with AI</button>
-
-  <!-- Modal Popup for Chat -->
-  <div id="chatModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>AI Chat</h2>
-      <div class="chat-box" id="chatBox">
-        <p><strong>AI:</strong> How can I help you analyze this data?</p>
-      </div>
-      <input type="text" id="chatInput" class="chat-input" placeholder="Type your message..." onkeydown="sendMessage(event)">
-    </div>
-  </div>
-
-  <script>
-    // Functions to open and close the modal
-    function openModal() {
-      document.getElementById('chatModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('chatModal').style.display = 'none';
-    }
-
-    // Simple chat functionality
-    function sendMessage(event) {
-      if (event.key === 'Enter') {
-        const input = document.getElementById('chatInput');
-        const message = input.value.trim();
-        if (message) {
-          const chatBox = document.getElementById('chatBox');
-          chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
-          chatBox.innerHTML += `<p><strong>AI:</strong> That's interesting! Let me think about it...</p>`;
-          input.value = '';
-          chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
-        }
-      }
-    }
-  </script>
-
-</body>
-</html>
+    
