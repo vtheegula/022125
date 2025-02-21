@@ -54,6 +54,51 @@
     button:hover {
       background-color: #2C8B42; /* Darker green */
     }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 450px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-box {
+      border: 1px solid #ccc;
+      padding: 12px;
+      height: 200px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+      background-color: #F8F9FA; /* Very light grey */
+    }
+
+    .chat-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .close {
+      float: right;
+      font-size: 22px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -96,81 +141,43 @@
     </tbody>
   </table>
 
-  <button onclick="openNewWindow()">Analyze with AI</button>
+  <button onclick="openModal()">Analyze with AI</button>
+
+  <!-- Modal Popup for Chat -->
+  <div id="chatModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>AI Chat</h2>
+      <div class="chat-box" id="chatBox">
+        <p><strong>AI:</strong> How can I help you analyze this data?</p>
+      </div>
+      <input type="text" id="chatInput" class="chat-input" placeholder="Type your message..." onkeydown="sendMessage(event)">
+    </div>
+  </div>
 
   <script>
-    function openNewWindow() {
-      // Open a new window with specified size
-      const newWindow = window.open("", "_blank", "width=600,height=400");
+    // Functions to open and close the modal
+    function openModal() {
+      document.getElementById('chatModal').style.display = 'flex';
+    }
 
-      // Define the content of the new window
-      newWindow.document.write(`
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>AI Chat</title>
-          <style>
-            body {
-              font-family: 'Roboto', sans-serif;
-              background-color: white;
-              color: #333;
-              margin: 20px;
-            }
-            .chat-box {
-              border: 1px solid #ccc;
-              padding: 12px;
-              height: 200px;
-              overflow-y: auto;
-              margin-bottom: 12px;
-              background-color: #F8F9FA; /* Very light grey */
-            }
-            .chat-input {
-              width: 100%;
-              padding: 12px;
-              border: 1px solid #ccc;
-              border-radius: 8px;
-              font-size: 14px;
-            }
-            .close {
-              position: absolute;
-              top: 10px;
-              right: 20px;
-              font-size: 22px;
-              cursor: pointer;
-            }
-          </style>
-        </head>
-        <body>
-          <h2>AI Chat</h2>
-          <div class="chat-box" id="chatBox">
-            <p><strong>AI:</strong> How can I help you analyze this data?</p>
-          </div>
-          <input type="text" id="chatInput" class="chat-input" placeholder="Type your message..." onkeydown="sendMessage(event)">
-          <span class="close" onclick="window.close()">X</span>
+    function closeModal() {
+      document.getElementById('chatModal').style.display = 'none';
+    }
 
-          <script>
-            // Simple chat functionality for the new window
-            function sendMessage(event) {
-              if (event.key === 'Enter') {
-                const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                if (message) {
-                  const chatBox = document.getElementById('chatBox');
-                  chatBox.innerHTML += \`<p><strong>You:</strong> \${message}</p>\`;
-                  chatBox.innerHTML += \`<p><strong>AI:</strong> That's interesting! Let me think about it...</p>\`;
-                  input.value = '';
-                  chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
-                }
-              }
-            }
-          </script>
-        </body>
-        </html>
-      `);
-
-      // Close the document write function and finish loading the new window content
-      newWindow.document.close();
+    // Simple chat functionality
+    function sendMessage(event) {
+      if (event.key === 'Enter') {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+        if (message) {
+          const chatBox = document.getElementById('chatBox');
+          chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+          chatBox.innerHTML += `<p><strong>AI:</strong> That's interesting! Let me think about it...</p>`;
+          input.value = '';
+          chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
+        }
+      }
     }
   </script>
 
